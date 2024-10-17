@@ -24,15 +24,13 @@ import java.util.List;
 
 /* class to upload files from Google Drive folder */
 public class QuickUpload {
-  
-  private static final String APPLICATION_NAME = "Google Drive API Java Quickstart"; // Application name
+
+  private static final String APPLICATION_NAME = "Google Drive API Java Upload"; // Application name
   private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance(); // Global instance of JSON factory
-  private static final java.io.File CREDENTIAL_TOKEN_FOLDER = new java.io.File(System.getProperty("user.home"), 
-                                                              "Filesharer\\tokens\\");
+  private static final java.io.File CREDENTIAL_TOKEN_FOLDER = new java.io.File(Settings.TOKENS_FOLDER__PATH);
 
   // Global instance of the scopes required by this quickstart. Saved tokens/ folder must be deleted when changing scopes
   private static final List<String> SCOPES = Collections.singletonList(DriveScopes.DRIVE); 
-  private static final String CREDENTIALS_FILE_PATH = "C:\\Users\\tomva\\Filesharer\\credentials.json";
 
   /**
    * Creates an authorized Credential object.
@@ -43,7 +41,7 @@ public class QuickUpload {
   private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT)
       throws IOException {
     // Load client secrets.
-    InputStream in = new FileInputStream(CREDENTIALS_FILE_PATH);
+    InputStream in = new FileInputStream(Settings.CREDENTIALS_FILE_PATH);
     GoogleClientSecrets clientSecrets =
         GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
