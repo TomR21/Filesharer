@@ -7,7 +7,7 @@ To use this application, the following dependencies are required.
 2. Google Cloud project (follow the steps taken [here](https://developers.google.com/workspace/guides/create-project) and create a [credential](https://developers.google.com/drive/api/quickstart/java))
 
 To use this application, we need to create a Google Drive Folder
-1. Go to [Drive](https://drive.google.com/drive/home) and create a new folder (name does not matter). **This folder should only documents that are used by Filesharer.**
+1. Go to [Drive](https://drive.google.com/drive/home) and create a new folder (name does not matter). **This folder should only contain documents that are used by Filesharer.**
 2. Open the folder and copy the ID after `https://drive.google.com/drive/folders/`. Save this ID for now.  
 
 When all dependencies are installed, follow the steps outlined below to install it on your machine.
