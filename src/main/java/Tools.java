@@ -23,8 +23,8 @@ public class Tools {
         catch( NumberFormatException e ) {
             return false;
         }
-    }
-
+    } 
+    
     /**
     * Calculates if string input is an integer or not
     * @param lineIndex Integer which indicates which row in the text file must be removed 
