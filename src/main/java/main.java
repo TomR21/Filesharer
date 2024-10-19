@@ -99,34 +99,12 @@ public class main {
       * Uploads all files whose path is saved in filesSaved.txt
       */
     public static void uploadFiles() {
-        String savefile_path = Settings.SAVEFILES_TXT_PATH;
-
-        // Scanner read line for line from filesSaved.txt
-        try (Scanner scanner = new Scanner(new FileReader(savefile_path))) {
-    
-            // Read the file until all lines have been read
-            while (scanner.hasNextLine()) {
-                String row = scanner.nextLine(); // we read one line
-
-                // Check if file is recognized by OS
-                if (!(Tools.doesFileExist(row))) {
-                    System.out.println("File at "+ row +" could not be found, wrong path or file does not exist");
-                    continue;
-                }
-
-                // Try to upload file using Drive API
-                try {
-                    QuickUpload.main(row);
-                    System.out.println(row + " has been uploaded");     // we print the line that we read
-                } catch (IOException e) {
-                    System.out.println("IOException: " + e);
-                } catch (GeneralSecurityException e) {
-                    System.out.println("GeneralSecurityException: " + e);
-                }
-            }
-            
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+        try {
+            QuickUpload.main();
+        } catch (IOException e) {
+            System.out.println("IOException: " + e);
+        } catch (GeneralSecurityException e) {
+            System.out.println("GeneralSecurityException: " + e);
         }
     }
 
@@ -146,7 +124,7 @@ public class main {
     /**
       * Deletes all files stored in the drive
       */
-      public static void deleteFiles() {
+    public static void deleteFiles() {
         try {
             QuickDelete.main();
         } catch (IOException e) {
