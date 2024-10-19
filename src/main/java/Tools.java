@@ -23,7 +23,33 @@ public class Tools {
         catch( NumberFormatException e ) {
             return false;
         }
-    } 
+    }
+
+    /**
+     * Checks if there is a file at given filepath
+     * @param filepath Path to location in file directory 
+     * @return Boolean which indicates whether there is a file at path
+     */
+    public static boolean doesFileExist( String filepath ) {
+        // Create java File object from path
+        java.io.File f = new java.io.File(filepath);
+
+        // Check if file exists at that path
+        if (f.isFile()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Removes quotes from string, used to convert windows copied paths to regular paths
+     * @param string Any string 
+     * @return String with quotes removed
+     */
+    public static String removeQuotes( String string ) {
+        return string.replace("\"", "");
+    }
     
     /**
     * Calculates if string input is an integer or not

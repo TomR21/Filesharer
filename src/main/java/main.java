@@ -16,20 +16,18 @@ public class main {
       * @param filepath String path to file including file itself
       * @return Boolean which returns the result
       */
-    public static boolean checkFile(String filepath) {    
-        // Does not work currently with windows copied paths because inserted ""s, remove these
-
-        // Create java File object from path
-        java.io.File f = new java.io.File(filepath);
-
-        // Check if file exists at that path
-        if (f.isFile()) {
-            return true;
+    public static void checkFile(Scanner scanner) {    
+        // Get path from user
+        System.out.println("Give a path");
+        String filepath = scanner.nextLine();
+        filepath = Tools.removeQuotes(filepath);
+    
+        if (Tools.doesFileExist(filepath)) {
+            System.out.println("This file exists");
         } else {
-            System.out.println("File at " + filepath +  " could not be found, wrong path or file does not exist");
-            return false;
+            System.out.println("This file does not exist");
         }
-    } 
+} 
 
     /**
       * Method to add path to saved files list stored in savedFiles.txt
@@ -38,9 +36,10 @@ public class main {
     public static void saveFile(Scanner scanner) {
         System.out.println("Give path to a file");
         String filepath = scanner.nextLine();
+        filepath = Tools.removeQuotes(filepath);
 
         // Check if files exists, if not return to regular program
-        if (!(checkFile(filepath))) {
+        if (!(Tools.doesFileExist(filepath))) {
             System.out.println("File not found");
             return;
         }
@@ -110,7 +109,8 @@ public class main {
                 String row = scanner.nextLine(); // we read one line
 
                 // Check if file is recognized by OS
-                if (!(checkFile(row))) {
+                if (!(Tools.doesFileExist(row))) {
+                    System.out.println("File at "+ row +" could not be found, wrong path or file does not exist");
                     continue;
                 }
 
@@ -186,11 +186,7 @@ public class main {
             
             // Checking the given command for each possible action
             if (answer.equals("check")) {
-                System.out.println("Give a path");
-                String filepath = scanner.nextLine();
-                if (checkFile(filepath)) {
-                    System.out.println("This file exists");
-                }
+                checkFile(scanner);
             } else if (answer.equals("add")) {
                 saveFile(scanner);
             } else if (answer.equals("delete")) {
