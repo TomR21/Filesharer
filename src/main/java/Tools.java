@@ -47,6 +47,7 @@ public class Tools {
         int index = 0;
         while((currentLine = reader.readLine()) != null) {
             if (index == lineIndex) {
+                index += 1;
                 continue;
             }
             writer.write(currentLine + System.getProperty("line.separator"));

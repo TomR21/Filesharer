@@ -29,8 +29,8 @@ public class QuickUpload {
     // File's content.
     java.io.File filePath = new java.io.File(filepath);
     
-    // Specify media type and file-path for file.
-    FileContent mediaContent = new FileContent("text/plain", filePath);
+    // Specify media type (null uses standard type) and file-path for file.
+    FileContent mediaContent = new FileContent(null, filePath);
     File file = service.files().create(fileMetadata, mediaContent)
       .setFields("id, parents")
       .execute();
