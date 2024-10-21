@@ -1,3 +1,0 @@
-C:\Users\tomva\Desktop\MyTxtFile.txt
-C:\Users\tomva\VSCode Projects\Filesharer\src\main\resources\config.txt
-a
