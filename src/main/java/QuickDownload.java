@@ -33,8 +33,8 @@ public class QuickDownload {
             do {
             FileList result = service.files().list()
                 .setQ(qString) // Searches for files in folder 
-                //.setSpaces("drive")
-                //.setFields("nextPageToken, items(id, title)")
+                .setSpaces("drive")
+                .setFields("nextPageToken, items(id, title)")
                 .setPageToken(pageToken)
                 .execute();
 

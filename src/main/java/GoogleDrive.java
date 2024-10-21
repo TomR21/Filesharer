@@ -35,7 +35,13 @@ public class GoogleDrive {
     // Global instance of the scopes required by this quickstart. Saved tokens/ folder must be deleted when changing scopes
     private static final List<String> SCOPES = Collections.singletonList(DriveScopes.DRIVE); 
 
-
+    /**
+     * Loads existing credential .
+     * @param HTTP_TRANSPORT The network HTTP Transport.
+     * @param userId The user Id given when the credential was requested
+     * @return An existing Credential object or null when it is not present.
+     * @throws IOException If the credentials.json file cannot be found.
+     */
     public static Credential loadCredential(HttpTransport httpTransport, JsonFactory jsonFactory, String userId) throws IOException {
         // Specify the path to the credential file
         File dataStoreDir = new File(Settings.TOKENS_FOLDER__PATH); // Directory where the credential is stored
@@ -84,7 +90,7 @@ public class GoogleDrive {
     static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) 
         throws IOException {
         
-            String userId = "user";
+        String userId = "user";
 
         // Load previous credential
         Credential prevCredential = loadCredential(HTTP_TRANSPORT, JSON_FACTORY, userId);

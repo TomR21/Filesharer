@@ -57,7 +57,7 @@ public class Tools {
     * @throws FileNotFoundException If the file cannot be found at the path
     * @throws IOException If the are insufficient permissions to write, rename or delete the file
     */
-    public static void removeLine(int lineIndex) throws FileNotFoundException, IOException{
+    public static void removeLine( int lineIndex ) throws FileNotFoundException, IOException{
         File inputFile = new File(Settings.SAVEFILES_TXT_PATH);
         
         // Create temporary file in the same directory

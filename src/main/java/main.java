@@ -7,7 +7,7 @@ import java.io.FileReader;
 
 
 /**
-   * Class running the main program loop
+   * Class running the main program loop and all callable methods from the CLI
    */
 public class main {
     
@@ -16,11 +16,11 @@ public class main {
       * @param filepath String path to file including file itself
       * @return Boolean which returns the result
       */
-    public static void checkFile(Scanner scanner) {    
+    public static void checkFile( Scanner scanner ) {    
         // Get path from user
         System.out.println("Give a path");
         String filepath = scanner.nextLine();
-        filepath = Tools.removeQuotes(filepath);
+        filepath = Tools.removeQuotes(filepath);  // Remove quotes to deal with copied windows paths
     
         if (Tools.doesFileExist(filepath)) {
             System.out.println("This file exists");
@@ -33,10 +33,11 @@ public class main {
       * Method to add path to saved files list stored in savedFiles.txt
       * @param scanner Scanner object used in the main program loop to ask for path
       */                        
-    public static void saveFile(Scanner scanner) {
+    public static void saveFile( Scanner scanner ) {
+        // Get path from user
         System.out.println("Give path to a file");
         String filepath = scanner.nextLine();
-        filepath = Tools.removeQuotes(filepath);
+        filepath = Tools.removeQuotes(filepath);  // Remove quotes to deal with copied windows paths
 
         // Check if files exists, if not return to regular program
         if (!(Tools.doesFileExist(filepath))) {
@@ -59,12 +60,12 @@ public class main {
     } 
 
     /**
-      * Method to remove a file path stored in savedFiles.txt
+      * Method to remove a file path stored in filesSaved.txt
       */   
     public static void removeFile() {
         System.out.println("Currently saved files:");
 
-        // Print out each file stored in savedFiles.txt with corresponding index
+        // Print out each file stored in filesSaved.txt with corresponding index
         int index = 0;
         try (Scanner reader = new Scanner(new FileReader(Settings.SAVEFILES_TXT_PATH))) {
             while (reader.hasNextLine()) {
@@ -92,7 +93,7 @@ public class main {
             }
         }
 
-        //remove_scanner.close();
+        //remove_scanner.close();  // closes the application, fix later
     }
 
     /**
@@ -138,7 +139,7 @@ public class main {
       * Main program loop
       * @param arguments options are 'shutdown' and 'boot', which circumvent user interaction and upload / download files respectively 
       */
-    public static void main(String args []) {
+    public static void main( String args [] ) {
         // Arguments circumventing user interaction via CLI, only applied on boot and shutdown
         for (int i = 0; i < args.length; i++) {
             if (args[i].equals("boot")) {
@@ -155,32 +156,51 @@ public class main {
         // Main program loop
         System.out.println("Hello there, what do you want to do?");
         while (true) {
-            System.out.println("'check' to see if file exists, 'upload' to upload all stored files, " 
-                + "'add' to add file to saved files, 'download' to download all files, 'delete' to delete all drive files");
+            System.out.println("'check' to see if file exists, 'add' to add file to saved files \n" 
+                + "'remove' to remove file from saved files, 'upload' to upload all stored files \n" 
+                + "'download' to download all files, 'delete' to delete all drive files\n"
+                + "'quit' to quit program");
 
             // Read user input
             Scanner scanner = new Scanner(System.in);
             String answer = scanner.nextLine(); 
             
             // Checking the given command for each possible action
-            if (answer.equals("check")) {
-                checkFile(scanner);
-            } else if (answer.equals("add")) {
-                saveFile(scanner);
-            } else if (answer.equals("delete")) {
-                deleteFiles();
-            } else if (answer.equals("remove")) {
-                removeFile();
-            } else if (answer.equals("upload")) {
-                uploadFiles();
-            } else if (answer.equals("download")) {
-                downloadFiles();
-            } else if (answer.equals("quit")) {
-                scanner.close();
-                return;
-            } else {
-                System.out.println("unknown command, try again");
-            }
+            switch (answer) 
+            {
+                case "check":
+                    checkFile(scanner);
+                    break;
+
+                case "add":
+                    saveFile(scanner);
+                    break;
+
+                case "remove":
+                    removeFile();
+                    break;
+
+                case "upload":
+                    uploadFiles();
+                    break;
+
+                case "download":
+                    downloadFiles();
+                    break;
+
+                case "delete":
+                    deleteFiles();
+                    break;
+
+                case "quit":
+                    scanner.close();
+                    Logger.log("Quitting Program");
+                    return;
+
+                default:
+                    System.out.println("Unknown command, try again");
+                    break;
+                }
         }
 
     }
