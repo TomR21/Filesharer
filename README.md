@@ -27,7 +27,7 @@ The program can be launched using `java -jar C:\Users\current_user\Filesharer\bu
 * `remove`: Remove the path to a file that is saved in filesSaved.txt.
 * `upload`: Uploads all files that are saved.
 * `download`: Download all files in the Google Drive Folder to `C:\Users\current_user\Filesharer\downloads\`.
-* `delete`: Deletes all files in the Google Drive Folder. \
+* `delete`: Deletes all files in the Google Drive Folder. <br />
 Note that the first time using this program might open Google prompting to allow Filesharer to access your Google Drive Folder. 
 
 The application can be run without user input using `java -jar C:\Users\current_user\Filesharer\build\libs\Filesharer-1.0-all.jar boot` or 
