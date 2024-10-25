@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-
 /**
    * Class running the main program loop and all callable methods from the CLI
    */
