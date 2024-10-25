@@ -1,5 +1,5 @@
 # Filesharer
-This windows application allows to sync files between multiple devices using the Google Drive API with Google Drive as the cloud database. To use the app, follow the steps below.
+This windows application allows to sync files between multiple devices using the Google Drive API with Google Drive as the cloud database. Note that you should only store files with distinct names, otherwise one will be overriden. To use the app, follow the steps below. 
 
 ## Installation (Windows Only)
 To use this application, the following dependencies are required. 
