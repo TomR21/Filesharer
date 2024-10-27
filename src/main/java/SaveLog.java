@@ -81,12 +81,11 @@ public class SaveLog {
         return index;
     }
 
-
     /**
      * Puts all filepaths from the filesSaved.txt file into a List
      * @return List<String> containing each path to a saved file 
      */
-    private static List<String> getFilePaths() {
+    public static List<String> getFilePaths() {
         List<String> filePathList = new ArrayList<String>();
 
         // Print out each file stored in filesSaved.txt with corresponding index
