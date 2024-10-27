@@ -1,9 +1,6 @@
 import java.security.GeneralSecurityException;
 import java.util.Scanner;
 import java.io.IOException;
-import java.io.FileWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 
 /**
    * Class running the main program loop and all callable methods from the CLI
@@ -26,73 +23,29 @@ public class main {
         } else {
             System.out.println("This file does not exist");
         }
-} 
+    } 
+
+
+    /**  
+     * Prints all the files saved in filesSaved.txt
+     */
+    public static void listSavedFiles() {
+        SaveLog.printFilePaths();
+    }
 
     /**
       * Method to add path to saved files list stored in savedFiles.txt
       * @param scanner Scanner object used in the main program loop to ask for path
       */                        
     public static void saveFile( Scanner scanner ) {
-        // Get path from user
-        System.out.println("Give path to a file");
-        String filepath = scanner.nextLine();
-        filepath = Tools.removeQuotes(filepath);  // Remove quotes to deal with copied windows paths
-
-        // Check if files exists, if not return to regular program
-        if (!(Tools.doesFileExist(filepath))) {
-            System.out.println("File not found");
-            return;
-        }
-
-        // Path of saved files text file
-        String savefiles_path = Settings.SAVEFILES_TXT_PATH;
-
-        // Try to append user filepath to current saved filepaths
-        try (FileWriter myWriter = new FileWriter(savefiles_path, true)) {
-            myWriter.write(filepath + "\n");
-            myWriter.close();
-            System.out.println("Added new file to saved files");
-          } catch (IOException e) {
-            System.out.println("An error occurred during saving.");
-            e.printStackTrace();
-          }
-    } 
+        SaveLog.addFile(scanner);
+    }
 
     /**
       * Method to remove a file path stored in filesSaved.txt
       */   
-    public static void removeFile() {
-        System.out.println("Currently saved files:");
-
-        // Print out each file stored in filesSaved.txt with corresponding index
-        int index = 0;
-        try (Scanner reader = new Scanner(new FileReader(Settings.SAVEFILES_TXT_PATH))) {
-            while (reader.hasNextLine()) {
-                String row = reader.nextLine();
-                System.out.println(String.valueOf(index) + ". " + row);
-                index += 1;
-            }
-        } catch (Exception e) {
-            System.out.println("Could not read save file, error: " + e.getMessage());
-        }
-
-        // Ask user to specify index to remove file 
-        System.out.println("Which file do you want to remove? (Enter integer, enter any other character to go back)");
-        Scanner remove_scanner = new Scanner(System.in);
-        String answer = remove_scanner.nextLine();
-
-        // Remove file if given a valid index
-        if (Tools.isInteger(answer) && Integer.parseInt(answer) <= index) {
-            try {
-                Tools.removeLine(Integer.parseInt(answer));
-            } catch (FileNotFoundException e) {
-                System.out.println("FileNotFoundException: " + e.getMessage());
-            } catch (IOException e) {
-                System.out.println("IOException: " + e.getMessage());
-            }
-        }
-
-        //remove_scanner.close();  // closes the application, fix later
+    public static void removeFile( Scanner scanner ) {
+        SaveLog.removeFile(scanner);
     }
 
     /**
@@ -171,12 +124,16 @@ public class main {
                     checkFile(scanner);
                     break;
 
+                case "list":
+                    listSavedFiles();
+                    break;
+
                 case "add":
                     saveFile(scanner);
                     break;
 
                 case "remove":
-                    removeFile();
+                    removeFile(scanner);
                     break;
 
                 case "upload":
