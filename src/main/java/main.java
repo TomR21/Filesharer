@@ -98,7 +98,6 @@ public class main {
                 downloadFiles();
                 return;
             } else if (args[i].equals("shutdown")) {
-                deleteFiles();
                 uploadFiles();
                 return;
             }

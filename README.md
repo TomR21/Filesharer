@@ -23,6 +23,7 @@ When all dependencies are installed, follow the steps outlined below to install 
 ## Using the application
 The program can be launched using `java -jar C:\Users\current_user\Filesharer\build\libs\Filesharer-1.0-all.jar `. All paths to the files that will be uploaded to the Drive are stored in filesSaved.txt. It has the following commands:
 * `check`: Checks if the program finds a file at the path that needs to be supplied.
+* `list`: Lists all files that are currently saved.
 * `add`: Add an additional file that needs to be saved by supplying the path to that file.
 * `remove`: Remove the path to a file that is saved in filesSaved.txt.
 * `upload`: Uploads all files that are saved.
@@ -32,4 +33,4 @@ The program can be launched using `java -jar C:\Users\current_user\Filesharer\bu
 Note that the first time using this program might open Google prompting to allow Filesharer to access your Google Drive Folder. 
 
 The application can be run without user input using `java -jar C:\Users\current_user\Filesharer\build\libs\Filesharer-1.0-all.jar boot` or 
-`java -jar C:\Users\current_user\Filesharer\build\libs\Filesharer-1.0-all.jar shutdown`. These automatically download or delete and upload all files in savedFiles.txt respectively.
+`java -jar C:\Users\current_user\Filesharer\build\libs\Filesharer-1.0-all.jar shutdown`. These automatically download or upload all files in savedFiles.txt respectively.
