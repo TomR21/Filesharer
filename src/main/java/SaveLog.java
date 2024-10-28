@@ -100,4 +100,25 @@ public class SaveLog {
 
         return filePathList;
     }
+
+    /**
+      * Puts all the file names (excluding parent directories) from the filesSaved.txt file into a List
+      * @return List<String> containing each name including extension of a saved file 
+      */
+    public static List<String> getFileNames() {
+        List<String> fileNameList = new ArrayList<String>();
+
+        // Print out each file stored in filesSaved.txt with corresponding index
+        try (Scanner reader = new Scanner(new FileReader(saveFilePath))) {
+            while (reader.hasNextLine()) {
+                String row = reader.nextLine();
+                row = row.substring(row.lastIndexOf("\\") + 1);
+                fileNameList.add(row);
+            }
+        } catch (Exception e) {
+            System.out.println("Could not read save file, error: " + e.getMessage());
+        }
+
+        return fileNameList;
+    }
 }

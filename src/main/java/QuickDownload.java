@@ -5,7 +5,6 @@ import com.google.api.services.drive.model.File;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.security.GeneralSecurityException;
 import java.io.FileOutputStream;
@@ -22,12 +21,15 @@ public class QuickDownload {
     public static void main() throws IOException, GeneralSecurityException {
         // Set HTTP transport and build drive service to download files with
         Drive service = GoogleDrive.buildDrive();
+
+        // Only download files whose name corresponds to file in the savefile
+        List<String> filesToDownload = SaveLog.getFileNames();
         
         try {
             // Folder to download all documents to
             String downloadFolderPath = Settings.DOWNLOAD_FOLDER_PATH;
-            List<File> files = new ArrayList<File>();
 
+            // Get all files located in the Drive Folder using this query
             String pageToken = null;
             String qString = String.format("parents in '%s'", Settings.DRIVE_FOLDER_ID);
             do {
@@ -38,12 +40,17 @@ public class QuickDownload {
                 .setPageToken(pageToken)
                 .execute();
 
+            // For each file check if they are saved and download them if so
             for (File file : result.getFiles()) {
-                String downloadFilePathName = file.getName();
-                String downloadFileName = downloadFilePathName.substring(downloadFilePathName.lastIndexOf("\\") + 1);
-    
+                String driveFileName = file.getName();
+                
+                // Skip files in Drive that are not saved
+                if (!filesToDownload.contains(driveFileName)) {
+                    continue;
+                }
+
                 // Create path to download folder location with file name
-                String downloadFolderLoc = downloadFolderPath + downloadFileName;
+                String downloadFolderLoc = downloadFolderPath + driveFileName;
     
                 // Create Outputstream to save file locally
                 OutputStream outputStream = new FileOutputStream(downloadFolderLoc);
@@ -54,13 +61,11 @@ public class QuickDownload {
                         file.getName(), file.getId());
                     Logger.log("Downloaded File:" + file.getName());
                 } catch(IOException e) {
-                    System.out.println("Could not download " + downloadFilePathName);
+                    System.out.println("Could not download " + driveFileName);
                 }
                 outputStream.flush();
                 outputStream.close();
             }
-
-            files.addAll(result.getFiles());
 
             pageToken = result.getNextPageToken();
             } while (pageToken != null);
