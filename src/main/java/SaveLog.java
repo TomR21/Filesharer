@@ -102,9 +102,9 @@ public class SaveLog {
     }
 
     /**
-      * Puts all the file names (excluding parent directories) from the filesSaved.txt file into a List
-      * @return List<String> containing each name including extension of a saved file 
-      */
+     * Puts all the file names (excluding parent directories) from the filesSaved.txt file into a List
+     * @return List<String> containing each name including extension of a saved file 
+     */
     public static List<String> getFileNames() {
         List<String> fileNameList = new ArrayList<String>();
 

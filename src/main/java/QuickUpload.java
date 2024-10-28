@@ -14,10 +14,10 @@ import java.util.List;
 public class QuickUpload {
 
     /**
-      * Uploads files stored in filesSaved.txt to Google Drive FilesharerStorage Folder.
-      * @throws IOException If the file at filepath cannot be found
-      * @throws GeneralSecurityException If the connection has issues during uploading to Google Drive
-      */
+     * Uploads files stored in filesSaved.txt to Google Drive FilesharerStorage Folder.
+     * @throws IOException If the file at filepath cannot be found
+     * @throws GeneralSecurityException If the connection has issues during uploading to Google Drive
+     */
     public static void main() throws IOException, GeneralSecurityException {
         // Build a new authorized API client service.
         Drive service = GoogleDrive.buildDrive();

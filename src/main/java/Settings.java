@@ -1,3 +1,4 @@
+
 /* Class containing paths and other settings. Individual users can tweak these settings to match their system. */
 public class Settings {
     // PATHS

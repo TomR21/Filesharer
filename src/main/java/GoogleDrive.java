@@ -26,6 +26,8 @@ import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.List;
 
+
+/* Implements credential authorization methods and drive instance builders */
 public class GoogleDrive {
 
     static final String APPLICATION_NAME = "Google Drive API Java Upload"; // Application name

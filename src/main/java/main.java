@@ -3,15 +3,14 @@ import java.util.Scanner;
 import java.io.IOException;
 
 /**
-   * Class running the main program loop and all callable methods from the CLI
-   */
+ * Class running the main program loop and all callable methods from the CLI
+ */
 public class main {
     
     /**
-      * Checks if file exists at the given path
-      * @param filepath String path to file including file itself
-      * @return Boolean which returns the result
-      */
+     * Prints out whether file exists at path given by user
+     * @param scanner Main system scanner that asks for path to a file
+     */
     public static void checkFile( Scanner scanner ) {    
         // Get path from user
         System.out.println("Give a path");
@@ -25,7 +24,6 @@ public class main {
         }
     } 
 
-
     /**  
      * Prints all the files saved in filesSaved.txt
      */
@@ -34,23 +32,23 @@ public class main {
     }
 
     /**
-      * Method to add path to saved files list stored in savedFiles.txt
-      * @param scanner Scanner object used in the main program loop to ask for path
-      */                        
+     * Method to add path to saved files list stored in savedFiles.txt
+     * @param scanner Scanner object used in the main program loop to ask for path
+     */                        
     public static void saveFile( Scanner scanner ) {
         SaveLog.addFile(scanner);
     }
 
     /**
-      * Method to remove a file path stored in filesSaved.txt
-      */   
+     * Method to remove a file path stored in filesSaved.txt
+     */   
     public static void removeFile( Scanner scanner ) {
         SaveLog.removeFile(scanner);
     }
 
     /**
-      * Uploads all files whose path is saved in filesSaved.txt
-      */
+     * Uploads all files whose path is saved in filesSaved.txt
+     */
     public static void uploadFiles() {
         try {
             QuickUpload.main();
@@ -62,8 +60,8 @@ public class main {
     }
 
     /**
-      * Downloads all files stored in the drive to downloads folder
-      */
+     * Downloads all files stored in the drive to downloads folder
+     */
     public static void downloadFiles() {
         try {
             QuickDownload.main();
@@ -75,8 +73,8 @@ public class main {
     }
 
     /**
-      * Deletes all files stored in the drive
-      */
+     * Deletes all files stored in the drive
+     */
     public static void deleteFiles( Scanner scanner ) {
         System.out.println("This will delete ALL files in the Google Drive Folder (also non-saved), are you sure? "
             + "Enter 'DELETE' to continue");
@@ -93,9 +91,9 @@ public class main {
     }
 
     /**
-      * Main program loop
-      * @param arguments options are 'shutdown' and 'boot', which circumvent user interaction and upload / download files respectively 
-      */
+     * Main program loop
+     * @param arguments options are 'shutdown' and 'boot', which circumvent user interaction and upload / download files respectively 
+     */
     public static void main( String args [] ) {
         // Arguments circumventing user interaction via CLI, only applied on boot and shutdown
         for (int i = 0; i < args.length; i++) {

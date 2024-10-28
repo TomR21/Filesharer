@@ -11,10 +11,10 @@ import java.io.IOException;
 public class Tools {
 
     /**
-    * Calculates if string input is an integer or not
-    * @param input Any string 
-    * @return Boolean which indicates whether the string is an integer or not
-    */
+     * Calculates if string input is an integer or not
+     * @param input Any string 
+     * @return Boolean which indicates whether the string is an integer or not
+     */
     public static boolean isInteger( String input ) {
         try {
             Integer.parseInt( input );
@@ -52,11 +52,11 @@ public class Tools {
     }
     
     /**
-    * Calculates if string input is an integer or not
-    * @param lineIndex Integer which indicates which row in the text file must be removed 
-    * @throws FileNotFoundException If the file cannot be found at the path
-    * @throws IOException If the are insufficient permissions to write, rename or delete the file
-    */
+     * Calculates if string input is an integer or not
+     * @param lineIndex Integer which indicates which row in the text file must be removed 
+     * @throws FileNotFoundException If the file cannot be found at the path
+     * @throws IOException If the are insufficient permissions to write, rename or delete the file
+     */
     public static void removeLine( int lineIndex ) throws FileNotFoundException, IOException{
         File inputFile = new File(Settings.SAVEFILES_TXT_PATH);
         
