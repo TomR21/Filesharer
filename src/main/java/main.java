@@ -77,13 +77,18 @@ public class main {
     /**
       * Deletes all files stored in the drive
       */
-    public static void deleteFiles() {
-        try {
-            QuickDelete.main();
-        } catch (IOException e) {
-            System.out.println("IOException: " + e);
-        } catch (GeneralSecurityException e) {
-            System.out.println("GeneralSecurityException: " + e);
+    public static void deleteFiles( Scanner scanner ) {
+        System.out.println("This will delete ALL files in the Google Drive Folder (also non-saved), are you sure? "
+            + "Enter 'DELETE' to continue");
+        String answer = scanner.nextLine();
+        if (answer.equals("DELETE")) {
+            try {
+                QuickDelete.main();
+            } catch (IOException e) {
+                System.out.println("IOException: " + e);
+            } catch (GeneralSecurityException e) {
+                System.out.println("GeneralSecurityException: " + e);
+            }
         }
     }
 
@@ -107,9 +112,9 @@ public class main {
         // Main program loop
         System.out.println("Hello there, what do you want to do?");
         while (true) {
-            System.out.println("'check' to see if file exists, 'add' to add file to saved files \n" 
-                + "'remove' to remove file from saved files, 'upload' to upload all stored files \n" 
-                + "'download' to download all files, 'delete' to delete all drive files\n"
+            System.out.println("'check' to see if file exists, 'list' to list all currently saved files, 'add' to add file to saved files \n" 
+                + "'remove' to remove file from saved files, 'upload' to upload all saved files \n" 
+                + "'download' to download all saved files, 'delete' to delete ALL drive files\n"
                 + "'quit' to quit program");
 
             // Read user input
@@ -144,7 +149,7 @@ public class main {
                     break;
 
                 case "delete":
-                    deleteFiles();
+                    deleteFiles(scanner);
                     break;
 
                 case "quit":
