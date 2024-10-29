@@ -18,7 +18,7 @@ public class SaveLog {
         System.out.println("Enter path to file that needs to be saved:");
 
         String filePath = scanner.nextLine();
-        filePath = Tools.removeQuotes(filePath);  // Remove quotes to deal with copied windows paths
+        filePath = Tools.convertPath(filePath);  // Convert to UNIX path
 
         // Check if files exists, if not return to regular program
         if (!(Tools.doesFileExist(filePath))) {
@@ -73,7 +73,7 @@ public class SaveLog {
         // Print out each file stored in filesSaved.txt with corresponding index
         int index = 0;
         for (String filePath : filePathList) {
-            String fileName = filePath.substring(filePath.lastIndexOf("\\") + 1);
+            String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
             System.out.println(String.valueOf(index) + ". " + fileName + " (Path: " + filePath + ")");
             index += 1;
         }
@@ -112,7 +112,7 @@ public class SaveLog {
         try (Scanner reader = new Scanner(new FileReader(saveFilePath))) {
             while (reader.hasNextLine()) {
                 String row = reader.nextLine();
-                row = row.substring(row.lastIndexOf("\\") + 1);
+                row = row.substring(row.lastIndexOf("/") + 1);
                 fileNameList.add(row);
             }
         } catch (Exception e) {

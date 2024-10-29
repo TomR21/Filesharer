@@ -15,7 +15,7 @@ public class main {
         // Get path from user
         System.out.println("Give a path");
         String filepath = scanner.nextLine();
-        filepath = Tools.removeQuotes(filepath);  // Remove quotes to deal with copied windows paths
+        filepath = Tools.convertPath(filepath);  // Convert to UNIX path
     
         if (Tools.doesFileExist(filepath)) {
             System.out.println("This file exists");

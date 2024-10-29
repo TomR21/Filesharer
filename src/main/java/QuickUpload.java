@@ -34,7 +34,7 @@ public class QuickUpload {
             }
 
             // Get name of the file with extension excluding its directory path 
-            String fileName = filePath.substring(filePath.lastIndexOf("\\") + 1);
+            String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
             
             // Create metadata for file to be uploaded
             File fileMetadata = new File();
@@ -52,7 +52,7 @@ public class QuickUpload {
                 
                 // Query to check if there exists a file in the Drive Folder with the same name
                 String qString = String.format("parents in '%s' and name = '%s'", Settings.DRIVE_FOLDER_ID, fileName);
-
+                
                 // Collect results and replace/upload file
                 do {
                 FileList foundFiles = service.files().list()

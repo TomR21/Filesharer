@@ -43,12 +43,13 @@ public class Tools {
     }
 
     /**
-     * Removes quotes from string, used to convert windows copied paths to regular paths
+     * Converts window (copied) paths ("C:\..") to UNIX paths (C:/) for compatability
      * @param string Any string 
-     * @return String with quotes removed
+     * @return String path that is stripped of quotes and UNIX based
      */
-    public static String removeQuotes( String string ) {
-        return string.replace("\"", "");
+    public static String convertPath( String string ) {
+        string = string.replace("\"", ""); // Remove quotes from copying paths
+        return string.replace("\\", "/"); // Change slash direction 
     }
     
     /**
@@ -61,7 +62,7 @@ public class Tools {
         File inputFile = new File(Settings.SAVEFILES_TXT_PATH);
         
         // Create temporary file in the same directory
-        String tempfile_path = Settings.SAVEFILES_TXT_PATH.substring(0, Settings.SAVEFILES_TXT_PATH.lastIndexOf("\\")) + "\\temp.txt";
+        String tempfile_path = Settings.SAVEFILES_TXT_PATH.substring(0, Settings.SAVEFILES_TXT_PATH.lastIndexOf("/")) + "/temp.txt";
         File tempFile = new File(tempfile_path);
 
         BufferedReader reader = new BufferedReader(new FileReader(inputFile));
